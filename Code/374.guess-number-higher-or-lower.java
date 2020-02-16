@@ -16,9 +16,9 @@ public class Solution extends GuessGame {
             return n;
         }
         return myrec(1, n);
-
     }
 
+    //binary search 
     public int myrec(int start, int end){
         int mid = (end-start)/2 + start;
         if(guess(mid)==0){
