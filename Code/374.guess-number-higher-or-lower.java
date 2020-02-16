@@ -12,7 +12,22 @@
 
 public class Solution extends GuessGame {
     public int guessNumber(int n) {
-        
+        if(guess(n)==0){
+            return n;
+        }
+        return myrec(1, n);
+
+    }
+
+    public int myrec(int start, int end){
+        int mid = (end-start)/2 + start;
+        if(guess(mid)==0){
+            return mid;
+        }else if(guess(mid)==1){
+            return myrec(mid+1, end);
+        }else{
+            return myrec(start, mid-1);
+        }
     }
 }
 // @lc code=end
