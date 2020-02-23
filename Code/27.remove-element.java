@@ -7,24 +7,38 @@
 // @lc code=start
 class Solution {
     public int removeElement(int[] nums, int val) {
-        int len = nums.length;
-        int num = 0;
-        int move = 0;
-        int i = 0;
-        while(i < len-move){
-            if(nums[i] == val){
-                for(int j = i;j < len-1;j++){
-                    nums[j] = nums[j+1];
-                }
-                nums[len-1] = val;
-                move += 1;
+        int count = 0;
+        for(int i = 0;i<nums.length;i++){
+            if(nums[i]==val){
+                count++;
             }else{
-                num += 1;
-                i += 1;
+                //swap(i-count, i)
+                if(count>0){
+                    nums[i-count] = nums[i];
+                    nums[i] = val;
+                }
             }
-            
         }
-        return num;
+        return nums.length-count;
+        
+        // int len = nums.length;
+        // int num = 0;
+        // int move = 0;
+        // int i = 0;
+        // while(i < len-move){
+        //     if(nums[i] == val){
+        //         for(int j = i;j < len-1;j++){
+        //             nums[j] = nums[j+1];
+        //         }
+        //         nums[len-1] = val;
+        //         move += 1;
+        //     }else{
+        //         num += 1;
+        //         i += 1;
+        //     }
+            
+        // }
+        // return num;
     }
 
 }

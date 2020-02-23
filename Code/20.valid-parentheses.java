@@ -1,5 +1,4 @@
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
 
 /*
  * @lc app=leetcode id=20 lang=java
@@ -27,8 +26,9 @@ class Solution {
             return true;
         }
         return false;
-        
     }
+
+        
 }
 // @lc code=end
 

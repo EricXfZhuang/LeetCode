@@ -17,10 +17,12 @@ class Solution {
                 ret[0] = left+1; ret[1] = right+1;
                 return ret;
             }
-            if(left>=right && sum!=target)
-                return ret;
-            if(sum>=target) right--;
-            else left++;
+            else if(sum>=target){
+                right--;
+            }
+            else{
+                left++;
+            }
         }
     }
 }
