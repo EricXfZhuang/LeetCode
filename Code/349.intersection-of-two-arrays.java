@@ -15,15 +15,6 @@ class Solution {
     public int[] intersection(int[] nums1, int[] nums2) {
         Set<Integer> set1 = new HashSet<Integer>();
         Set<Integer> set2 = new HashSet<Integer>();
-        int shortLen; int longLen; int flag;
-        if(nums1.length > nums2.length){
-            longLen = nums1.length;
-            shortLen = nums2.length;
-        }else{
-            longLen = nums2.length;
-            shortLen = nums1.length;
-        }
-
         //place items from long array to set
         for(int i = 0;i < nums1.length;i++){
             set1.add(nums1[i]);
@@ -32,18 +23,21 @@ class Solution {
             set2.add(nums2[i]);
         }
 
-        Iterator iter = set1.iterator();
+        Iterator<Integer> iter = set1.iterator();
         ArrayList<Integer> arr = new ArrayList<Integer>();
         while(iter.hasNext()){
             int ele = (int) iter.next();
             if(set2.contains(ele))
                 arr.add(ele);
         }
-        int[] ret = new int[arr.size()];
-        for(int i = 0;i < arr.size();i++){
-            ret[i] = arr.get(i); 
-        }   
-        return ret;
+        
+        //convert arrayList to array
+        int[] res = new int[arr.size()];
+        int index = 0;
+        for(Integer ele : arr){
+            res[index++] = ele;
+        }
+        return res;
     }
 }
 // @lc code=end

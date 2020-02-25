@@ -9,12 +9,10 @@ import java.util.HashMap;
 // @lc code=start
 class Solution {
     public boolean isIsomorphic(String s, String t) {
-        int len1 = s.length();
-        int len2 = t.length();
-        if(len1 != len2) return false;
+        if(s.length() != t.length()) return false;
         HashMap<Character,Character> map1 = new HashMap<Character, Character>(); 
         HashMap<Character,Character> map2 = new HashMap<Character, Character>();
-        for(int i = 0;i<len1;i++){
+        for(int i = 0;i<s.length();i++){
             map1.putIfAbsent(s.charAt(i), t.charAt(i));
             map2.putIfAbsent(t.charAt(i), s.charAt(i));
             if(t.charAt(i)!=map1.get(s.charAt(i))) return false;

@@ -9,30 +9,25 @@ import java.util.Map.Entry;
 // @lc code=start
 class Solution {
     public int[] intersect(int[] nums1, int[] nums2) {
-        Map<Integer, Integer> map1 = new HashMap();
-        Map<Integer, Integer> map2 = new HashMap();
-        for(Integer item:nums1){
-            map1.putIfAbsent(item, 0);
-            map1.put(item, map1.get(item)+1);
+        Map<Integer, Integer> map = new HashMap();
+        for(int i = 0;i<nums1.length;i++){
+            if(map.containsKey(nums1[i]))
+                map.put(nums1[i],map.get(nums1[i])+1);
+            else
+                map.put(nums1[i],1);
         }
-        for(Integer item:nums2){
-            map2.putIfAbsent(item, 0);
-            map2.put(item, map2.get(item)+1);
-        }
-        List<Integer> ls = new ArrayList();
-        for(Map.Entry<Integer, Integer> entry:map1.entrySet()){
-            int key = entry.getKey();
-            int val = entry.getValue();
-            if(map2.containsKey(key)){
-                int len = Math.min(val, map2.get(key));
-                for(int i = 0;i < len;i++){
-                    ls.add(key);
-                }
+
+        ArrayList<Integer> arr = new ArrayList<Integer>();
+        for(int i = 0;i<nums2.length;i++){
+            if(map.containsKey(nums2[i]) && map.get(nums2[i])>0){
+                arr.add(nums2[i]);
+                map.put(nums2[i], map.get(nums2[i]) - 1);
             }
         }
-        int[] ret = new int[ls.size()];
-        for(int i = 0;i < ret.length;i++){
-			ret[i] = ls.get(i);
+
+        int[] ret = new int[arr.size()];
+        for(int i = 0;i<arr.size();i++){
+            ret[i] = arr.get(i);
         }
         return ret;
     }

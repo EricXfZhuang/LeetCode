@@ -1,7 +1,4 @@
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.TreeSet;
-import java.util.Map.Entry;
+import java.util.*;
 
 /*
  * @lc app=leetcode id=290 lang=java
