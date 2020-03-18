@@ -8,32 +8,26 @@ import java.util.*;
 // @lc code=start
 class Solution {
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
-        List<List<Integer>> res = new ArrayList<>();
-        Set<List<Integer>> set = new HashSet<>();
-        dfs(candidates, target, set, new ArrayList<>(), 0);
-        Iterator iter = set.iterator();
-        while(iter.hasNext()){
-            res.add((List<Integer>) iter.next());
-        }
-        return res;
+        List<List<Integer>> rs = new ArrayList<>();
+        List<Integer> curr = new ArrayList<>();
+        Arrays.sort(candidates);
+        dfs(candidates, target, 0, curr, rs);
+        return rs;
     }
 
-    public void dfs(int[] candidates, int target, Set<List<Integer>> set, List<Integer> leaf, int sum){
-        if(sum == target){
-            Collections.sort(leaf);
-            set.add(leaf);
+    public void dfs(int[] nums, int target, int curIndex, List<Integer> curr, List<List<Integer>> rs){
+        if(target == 0){
+            rs.add(new ArrayList<>(curr));
             return;
-        }else if(sum > target){
-            return;
-        }else{
-            for(Integer ele : candidates){
-                ArrayList<Integer> newLs = (ArrayList<Integer>) ((ArrayList<Integer>) leaf).clone();
-                newLs.add(ele);
-                dfs(candidates, target, set, newLs, sum+ele);
-            }
+        }
+
+        for(int i = curIndex; i < nums.length; i++){
+            if(nums[i] > target) break;
+            curr.add(nums[i]);
+            dfs(nums, target-nums[i], i, curr, rs);
+            curr.remove(curr.size()-1);
         }
     }
-
 }
 // @lc code=end
 
