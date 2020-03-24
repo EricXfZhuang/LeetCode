@@ -7,16 +7,22 @@
 // @lc code=start
 class NumArray {
 
+    int[] nums;
     public NumArray(int[] nums) {
-        
+        this.nums = nums;
     }
     
     public void update(int i, int val) {
-        
+        this.nums[i] = val;
     }
     
     public int sumRange(int i, int j) {
-        
+        int sum = 0;
+        int curr = i;
+        while(curr <= j){
+            sum += nums[curr++];
+        }
+        return sum;
     }
 }
 
