@@ -8,26 +8,34 @@ import java.util.*;
 // @lc code=start
 class Solution {
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {
-        Set<Integer> set = new HashSet<Integer>();
-        Map<Integer, Integer> map = new TreeMap<Integer, Integer>();
-        for(Integer ele : nums1){
-            set.add(ele);
-        }
-        for(int i = 0;i < nums2.length;i++){
-            map.put(nums2[i], i);
-        }
-        int[] result = new int[nums1.length];
-        for(int i = 0;i < nums1.length;i++){
-            if(map.get(nums1[i])+1<nums2.length){
-                if(nums2[map.get(nums1[i])+1]>nums1[i])
-                    result[i] = nums2[map.get(nums1[i])+1];
-                else
-                    result[i] = -1;
-            }else{
-                result[i] = -1;
+        int[] res = new int[nums1.length];
+            for(int i = 0; i < nums1.length; i++){
+                int indexInNums2 = findIndex(nums1[i], nums2);
+                int nextGreaterIndex = nextGreaterIndex(indexInNums2, nums2);
+                res[i] = nextGreaterIndex > -1 ? nums2[nextGreaterIndex] : -1;
+            }
+            return res;
+    }
+
+    public int findIndex(int ele, int[] nums2){
+        for(int i = 0; i < nums2.length; i++){
+            if(nums2[i] == ele){
+                return i;
             }
         }
-        return result;
+        return -1;
+    }
+    
+    public int nextGreaterIndex(int index, int[] nums2){
+        int ele = nums2[index];
+        int curr = index + 1;
+        while(curr < nums2.length){
+            if(nums2[curr] > ele){
+                return curr;
+            }
+            curr++;
+        }
+        return -1;
     }
 }
 // @lc code=end
